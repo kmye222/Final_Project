@@ -1,0 +1,39 @@
+// the setup routine runs once when you press reset:
+int led_1 = 9;
+int led_2 = 11;
+
+int brightness_1 = 0;
+int brightness_2 = 0;
+
+int fadeAmount_1 = 5;
+int fadeAmount_2 = 5;
+
+void setup() {
+  // declare pin 9 to be an output:
+  pinMode(led_1, OUTPUT);
+  pinMode(led_2, OUTPUT);
+
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // set the brightness of pin 9:
+  analogWrite(led_1, brightness_1);
+  analogWrite(led_2, brightness_2);
+
+  // change the brightness for next time through the loop:
+  brightness_1 = brightness_1 + fadeAmount_1;
+  brightness_2 = brightness_2 + fadeAmount_2;
+
+  // reverse the direction of the fading at the ends of the fade:
+  if (brightness_1 == 0 || brightness_1 == 255) {
+    fadeAmount_1 = -fadeAmount_1 ;
+  }else if (brightness_2 == 0 || brightness_2 == 255) {
+    fadeAmount_2 = -fadeAmount_2 ;
+  }
+  // wait for 30 milliseconds to see the dimming effect
+  delay(60);
+
+
+
+}
